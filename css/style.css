@@ -5,72 +5,11 @@
 }
 
 
-body {
-    background-color: rgb(48, 45, 156);
-}
-
-.contenedor{
-    font-family: 'Times New Roman', Times, sans-serif;
-    font-size: 30px;
-    margin-top: 200px auto;
-    text-align: center;
+body{
+    background-color: black;
     color: white;
-    justify-content: center;
-
-}
-
-.cuadradoTexto{
+    text-align: center;
     display: flex;
-    margin: 0 auto;
     justify-content: center;
-    width: 500px;
-    height: 50px;
-    background-color: white;
-    border-radius: 20px;
-}
-
-.cuadradoTexto .input label input{
-    font-size: 25px;
-    margin: 0 auto;
-    justify-content: center;
-    width: 600px;
-    height: 50px;
-    background-color: white;
-    border-radius: 10px;
-}
-
-.btn_agregar{
-    width: 55px;
-    height: 50px;
-    margin-left: 3px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.contenedorTarea{
-    display: flex;
-}
-
-
-.contenedorTarea .tareaAgregada{
-    display: none;
-    /* display: flex; */
-    margin-left: 450px;
-    margin-top:10px;
-    justify-content: center;
-    width: 400px;
-    height: 50px;
-    background-color: white;
-    border-radius: 10px;
-}
-
-.botonesTareas button{
-    display: none;
-    width: 55px;
-    height: 50px;
-    margin-top:10px;
-    margin-left: 3px;
-    border-radius: 10px;
-    cursor: pointer;
 }
 
