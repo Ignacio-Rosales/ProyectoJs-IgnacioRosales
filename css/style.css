@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 header .contenedor-header{
     display: flex;
     justify-content: space-between;
@@ -29,8 +30,7 @@ body{
     color: white;
     text-align: center;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center; 
 }
 
 .contenedor{
@@ -74,4 +74,51 @@ body{
 .contenedor .contenedor_img .btn-comprar:hover{
     font-size: 17px;
     color: white;
+}
+
+
+@media(max-width: 700px){
+
+    header .contenedor-header{
+        justify-content: left;
+        position: left;
+        font-size: 15px;
+    }
+    header .contenedor-header h1{
+        margin-right: 50px;
+    }
+
+
+    header .contenedor-header .icon{
+        margin-right: 10px;
+        font-size: 25px;
+    }
+
+    header .contenedor-header .icon p{
+        font-size: 15px;
+    }
+
+    .contenedor{
+        display: block;
+        margin-top: 20px ;
+        padding: 20px;
+    }
+
+    .contenedor .contenedor_img{
+        margin: 30px;
+        width: 300px;
+        height: 400px;
+    }
+
+    .contenedor .contenedor_img img{
+        width: 150px;
+        height: 200px;
+    }
+
+    .contenedor .contenedor_img .btn-comprar{
+        font-size: 13px;
+        width: 90px;
+
+    }
+
 }
