@@ -44,26 +44,83 @@ class Carrito {
 }   
 
 
+const listaPeliculas = ["The Batman", "Predator", "La monja", "Asesinos de la luna", "Oppenheimer"]
+
+let mensaje = "Lista de peliculas que puedes seleccionar para agregar al carrito: " + "\n"
+
+for(let i=0; i < listaPeliculas.length; i++){
+    mensaje += ( i + 1 ) +" . " + listaPeliculas[i] + "\n"
+}
+
+alert(mensaje)
+
 const lista = []
 
-const pelicula1 = new Pelicula(1,"Fight Club","Pelicula de un esquizofrenico", 120)
-const pelicula2 = new Pelicula(2,"Codigo Enigma","Alan nigga", 160)
-const pelicula3 = new Pelicula(3,"Buscando al soldado ryan","Guerra", 140)
+let peliculaElegida = prompt("Ingrese la pelicula elegida: ")
 
-const serie1 = new Serie(1,"Vikings", "Serie basada en nordicos", 40, 10 , 5)
+while( peliculaElegida != null && peliculaElegida != ""){
 
-const carrito = new Carrito()
+        if (peliculaElegida == "The Batman"){
+            lista.push(peliculaElegida)
+            peliculaElegida = prompt("Seleccione otra pelicula a elegir: ")
 
-carrito.agregarPelicula(pelicula1, lista)
-carrito.agregarPelicula(pelicula2, lista)
-carrito.agregarPelicula(pelicula3, lista)
+        }else if( peliculaElegida == "Predator"){
+                lista.push(peliculaElegida)
+                peliculaElegida = prompt("Seleccione otra pelicula a elegir: ")
 
-console.log(carrito)
+        }else if(peliculaElegida == "La monja"){
+            lista.push(peliculaElegida)
+            peliculaElegida = prompt("Seleccione otra pelicula a elegir: ")
 
-carrito.quitarPelicula(pelicula2, carrito)
+        }else if( peliculaElegida == "Asesinos de la luna"){
+            lista.push(peliculaElegida)
+            peliculaElegida = prompt("Seleccione otra pelicula a elegir: ")
 
-console.log(carrito)
+        }else {
+            lista.push(peliculaElegida)
+            peliculaElegida = prompt("Seleccione otra pelicula a elegir: ")
+        }
+    
+}
+    
+let eliminarPelicula = prompt("Si desea eliminar una pelicula ingrese su nombre: ")
 
-carrito.agregarPelicula(serie1, lista)
+while( eliminarPelicula != null && eliminarPelicula != ""){
+    for(let i = lista.length -1 ; i >= 0; i--){
+        if ( lista[i] === eliminarPelicula){
+            lista.splice( i , 1 )
+        }else{
+            eliminarPelicula = prompt("Desea eliminar otra pelicula: ")
+        }   
+    }
+}
 
-console.log(carrito)
+
+alert("Esta es la lista de peliculas que usted eligio para comprar: " + lista)
+
+console.log(lista)
+
+
+
+
+// const pelicula1 = new Pelicula(1,"Fight Club","Pelicula de un esquizofrenico", 120)
+// const pelicula2 = new Pelicula(2,"Codigo Enigma","Alan nigga", 160)
+// const pelicula3 = new Pelicula(3,"Buscando al soldado ryan","Guerra", 140)
+
+// const serie1 = new Serie(1,"Vikings", "Serie basada en nordicos", 40, 10 , 5)
+
+// const carrito = new Carrito()
+
+// carrito.agregarPelicula(pelicula1, lista)
+// carrito.agregarPelicula(pelicula2, lista)
+// carrito.agregarPelicula(pelicula3, lista)
+
+// console.log(carrito)
+
+// carrito.quitarPelicula(pelicula2, carrito)
+
+// console.log(carrito)
+
+// carrito.agregarPelicula(serie1, lista)
+
+// console.log(carrito)
