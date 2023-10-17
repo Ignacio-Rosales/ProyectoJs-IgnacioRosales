@@ -83,25 +83,33 @@ while( peliculaElegida != null && peliculaElegida != ""){
     
 }
     
-let eliminarPelicula = prompt("Si desea eliminar una pelicula ingrese su nombre: ")
 
-while( eliminarPelicula != null && eliminarPelicula != ""){
-    for(let i = lista.length -1 ; i >= 0; i--){
-        if ( lista[i] === eliminarPelicula){
-            lista.splice( i , 1 )
-        }else{
-            eliminarPelicula = prompt("Desea eliminar otra pelicula: ")
-        }   
+function removerPelicula(nombrePelicula){
+
+    const index = lista.indexOf(nombrePelicula)
+
+    if(index !== -1){
+        lista.splice(index, 1)
+        console.log(`"${nombrePelicula}" ha sido eliminada de la lista.`)
+    }else{
+        console.log(`"${nombrePelicula}" no se encontró en la lista.`)
     }
 }
 
+while(true){
 
-alert("Esta es la lista de peliculas que usted eligio para comprar: " + lista)
+    const peliculaAEliminar = prompt("Ingrese el nombre de la pelicula que desea eliminar (o cancele para salir)")
 
-console.log(lista)
+    if(peliculaAEliminar === null){
+        break;
 
+    }else{
+        removerPelicula(peliculaAEliminar)
+        console.log("Lista de peliculas actualizadas: ", lista)
+    }
+}
 
-
+alert("Esta es la lista de peliculas que usted eligio para comprar: " + lista )
 
 // const pelicula1 = new Pelicula(1,"Fight Club","Pelicula de un esquizofrenico", 120)
 // const pelicula2 = new Pelicula(2,"Codigo Enigma","Alan nigga", 160)
