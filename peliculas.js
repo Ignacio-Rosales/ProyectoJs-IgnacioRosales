@@ -7,8 +7,17 @@ class Pelicula {
     }
 }
 
+const pelicula1 = new Pelicula(1,"The Batman","Batman xd", 120)
+const pelicula2 = new Pelicula(2,"Predator", "Bicho feo", 160)
+const pelicula3 = new Pelicula(3,"La monja","monjita", 150)
+const pelicula4 = new Pelicula(4,"Asesinos de la luna", "descripicon breve", 140)
+const pelicula5 = new Pelicula(5,"Oppenheimer", "bombita", 185)
+
+
+let listaPeliculas = [ pelicula1, pelicula2, pelicula3, pelicula4, pelicula5 ]
+
 class Serie extends Pelicula {
-    constructor(id,nombre, descripcion, duracion, capitulos, temporadas){
+    constructor(id, nombre, descripcion, duracion, capitulos, temporadas){
         super(id,nombre, descripcion, duracion)
         this.capitulos = capitulos,
         this.temporadas= temporadas
@@ -43,79 +52,75 @@ class Carrito {
     }
 }   
 
-
-const listaPeliculas = ["The Batman", "Predator", "La monja", "Asesinos de la luna", "Oppenheimer"]
-
-let mensaje = "Lista de peliculas que puedes seleccionar para agregar al carrito: " + "\n"
-
-for(let i=0; i < listaPeliculas.length; i++){
-    mensaje += ( i + 1 ) +" . " + listaPeliculas[i] + "\n"
+function mostrarListaPeliculas() {
+    let mensaje = "Lista de películas disponibles:\n";
+    console.log("Lista de películas disponibles:");
+    for (let i = 0; i < listaPeliculas.length; i++) {
+        mensaje += `${i + 1}. ${listaPeliculas[i].nombre}\n`;
+        console.log(`${i + 1}. ${listaPeliculas[i].nombre}`);
+    }
+    return mensaje 
 }
 
-alert(mensaje)
+alert(mostrarListaPeliculas());
 
-const lista = []
+const carrito = [];
 
-let peliculaElegida = prompt("Ingrese la pelicula elegida: ")
-
-while( peliculaElegida != null && peliculaElegida != ""){
-
-        if (peliculaElegida == "The Batman"){
-            lista.push(peliculaElegida)
-            peliculaElegida = prompt("Seleccione otra pelicula a elegir: ")
-
-        }else if( peliculaElegida == "Predator"){
-                lista.push(peliculaElegida)
-                peliculaElegida = prompt("Seleccione otra pelicula a elegir: ")
-
-        }else if(peliculaElegida == "La monja"){
-            lista.push(peliculaElegida)
-            peliculaElegida = prompt("Seleccione otra pelicula a elegir: ")
-
-        }else if( peliculaElegida == "Asesinos de la luna"){
-            lista.push(peliculaElegida)
-            peliculaElegida = prompt("Seleccione otra pelicula a elegir: ")
-
-        }else {
-            lista.push(peliculaElegida)
-            peliculaElegida = prompt("Seleccione otra pelicula a elegir: ")
+function agregarPeliculaAlCarrito(nombrePelicula) {
+    const peliculaEncontrada = listaPeliculas.find(pelicula => pelicula.nombre === nombrePelicula);
+    if (peliculaEncontrada) {
+        if (!carrito.includes(peliculaEncontrada)) {
+            carrito.push(peliculaEncontrada);
+            console.log(`"${nombrePelicula}" ha sido agregada al carrito.`);
+        } else {
+            console.log("La película ya se encuentra en el carrito.");
         }
-    
-}
-    
-
-function removerPelicula(nombrePelicula){
-
-    const index = lista.indexOf(nombrePelicula)
-
-    if(index !== -1){
-        lista.splice(index, 1)
-        console.log(`"${nombrePelicula}" ha sido eliminada de la lista.`)
-    }else{
-        console.log(`"${nombrePelicula}" no se encontró en la lista.`)
+    } else {
+        console.log(`"${nombrePelicula}" no se encontró en la lista de películas.`);
     }
 }
 
-while(true){
+function removerPeliculaDelCarrito(nombrePelicula) {
+    const peliculaEnCarrito = carrito.find(pelicula => pelicula.nombre === nombrePelicula);
+    if (peliculaEnCarrito) {
+        const index = carrito.indexOf(peliculaEnCarrito);
+        carrito.splice(index, 1);
+        alert(`"${nombrePelicula}" ha sido eliminada del carrito.`);
 
-    const peliculaAEliminar = prompt("Ingrese el nombre de la pelicula que desea eliminar (o cancele para salir)")
+        let mensaje = "Lista de películas actualizadas:\n";
+        console.log("Lista de películas actualizadas:");
+        for (let i = 0; i < carrito.length; i++) {
+            mensaje += `${i + 1}. ${carrito[i].nombre}\n`;
+            console.log(`${i + 1}. ${carrito[i].nombre}`);
+        }
+        return mensaje 
+    } else {
+        alert(`"${nombrePelicula}" no se encontró en el carrito.`);
+    }
+}
 
-    if(peliculaAEliminar === null){
+while (true) {
+    const accion = prompt("¿Desea agregar una película (A) o eliminar una película (E) del carrito? Ingrese 'A' o 'E' (o cancele para salir)");
+
+    if (accion === null) {
         break;
-
-    }else{
-        removerPelicula(peliculaAEliminar)
-        console.log("Lista de peliculas actualizadas: ", lista)
+    } else if (accion === 'A') {
+        const peliculaElegida = prompt("Ingrese el nombre de la película que desea agregar al carrito").toUpperCase();
+        agregarPeliculaAlCarrito(peliculaElegida);
+    } else if (accion === 'E') {
+        const peliculaAEliminar = prompt("Ingrese el nombre de la película que desea eliminar del carrito").toUpperCase();
+        removerPeliculaDelCarrito(peliculaAEliminar);
     }
 }
 
-alert("Esta es la lista de peliculas que usted eligio para comprar: " + lista )
+if (carrito.length > 0) {
+    let mensajeCarrito = "Esta es la lista de películas que eligió para comprar:\n";
+    carrito.forEach(pelicula => mensajeCarrito += pelicula.nombre + "\n");
+    alert(mensajeCarrito);
+} else {
+    alert("No ha agregado ninguna película al carrito.");
+}
 
-// const pelicula1 = new Pelicula(1,"Fight Club","Pelicula de un esquizofrenico", 120)
-// const pelicula2 = new Pelicula(2,"Codigo Enigma","Alan nigga", 160)
-// const pelicula3 = new Pelicula(3,"Buscando al soldado ryan","Guerra", 140)
-
-// const serie1 = new Serie(1,"Vikings", "Serie basada en nordicos", 40, 10 , 5)
 
 // const carrito = new Carrito()
 
