@@ -38,16 +38,16 @@ body{
     justify-content: space-between;
     margin-top: 20px ;
     padding: 20px;
-
 }
 
 .contenedor .contenedor_img{
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     margin: 10px;
     width: 350px;
     height: 450px;
     padding: 15px;
     border-radius: 20px;
+    
 }
 
 .contenedor .contenedor_img img{
@@ -58,7 +58,20 @@ body{
 } 
 
 .contenedor .contenedor_img p{
+    max-height: 100px;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
     margin: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+::-webkit-scrollbar {
+    width: 10px; 
+    background: transparent;
 }
 
 .contenedor .contenedor_img .btn-comprar{
