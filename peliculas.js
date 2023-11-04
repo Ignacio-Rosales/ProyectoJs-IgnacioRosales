@@ -1,20 +1,26 @@
+//Realizar clase usuario para loguearse en la pagina de peliculas
 class Pelicula {
-    constructor(id, nombre, descripcion, duracion){
+    constructor(id, imagenUrl, nombre, descripcion, duracion){
         this.id  = id,
+        this.imagenUrl = imagenUrl,
         this.nombre = nombre.toUpperCase(),
-        this.descripcion = descripcion.toUpperCase(),
+        this.descripcion = descripcion,
         this.duracion = parseInt(duracion)
     }
 }
-
-const pelicula1 = new Pelicula(1,"The Batman","Batman xd", 120)
-const pelicula2 = new Pelicula(2,"Predator", "Bicho feo", 160)
-const pelicula3 = new Pelicula(3,"La monja","monjita", 150)
-const pelicula4 = new Pelicula(4,"Asesinos de la luna", "descripicon breve", 140)
-const pelicula5 = new Pelicula(5,"Oppenheimer", "bombita", 185)
+//Convertirlos en JSON con Stringify
+const pelicula1 = new Pelicula(1, "./img/batman.jpg","The Batman","En Halloween, el alcalde de Gotham City Don Mitchell Jr. es asesinado por el asesino en serie Riddler (Enigma en España, Acertijo en Hispanoamérica). El multimillonario Bruce Wayne, que lleva dos años operando en Gotham como el justiciero enmascarado Batman, investiga el hecho junto al Departamento de Policía de Gotham City (GCPD)", 120)
+const pelicula2 = new Pelicula(2,"./img/depredador.jpg","Predator", "Un grupo de exsoldados y un biólogo se enfrentarán a los cazadores más letales de todo el universo, quienes han alterado sus cuerpos con el ADN de otras especies para hacer desaparecer a la raza humana.", 160)
+const pelicula3 = new Pelicula(3,"./img/lamonja.jpg","La monja","Una monja se suicida en una abadía rumana y el Vaticano envía a un sacerdote y una novicia a investigar lo sucedido. Lo que ambos encuentran allá es un secreto perverso que los enfrentará cara a cara con el mal en su esencia más pura.", 150)
+const pelicula4 = new Pelicula(4,"./img/dicaprio.jpg","Asesinos de la luna", "En la década de 1920, los miembros de la tribu de nativos americanos del condado de Osage, en Oklahoma, son asesinados cuando se encuentra petróleo en sus tierras. El FBI establece una investigación para encontrar a los culpables.", 140)
+const pelicula5 = new Pelicula(5,"./img/oppenheimer.jpg","Oppenheimer", "Durante la Segunda Guerra Mundial, el teniente general Leslie Groves designa al físico J. Robert Oppenheimer para un grupo de trabajo que está desarrollando el Proyecto Manhattan, cuyo objetivo consiste en fabricar la primera bomba atómica.", 185)
 
 
 let listaPeliculas = [ pelicula1, pelicula2, pelicula3, pelicula4, pelicula5 ]
+
+const listaPeliculasStr = JSON.stringify(listaPeliculas)
+
+localStorage.setItem("peliculas", listaPeliculasStr)
 
 class Serie extends Pelicula {
     constructor(id, nombre, descripcion, duracion, capitulos, temporadas){
@@ -64,7 +70,7 @@ function mostrarListaPeliculas() {
 
 alert(mostrarListaPeliculas());
 
-const carrito = [];
+const carrito = [];//Este carrito tiene que ser un JSON para almacenar los datos en el localStorage
 
 function agregarPeliculaAlCarrito(nombrePelicula) {
     const peliculaEncontrada = listaPeliculas.find(pelicula => pelicula.nombre === nombrePelicula);
@@ -121,19 +127,54 @@ if (carrito.length > 0) {
     alert("No ha agregado ninguna película al carrito.");
 }
 
+const carritoStr = JSON.stringify(carrito)
 
-// const carrito = new Carrito()
+localStorage.setItem("carrito", carritoStr)
+//Corregir problema de que se reinicia el carrito cada vez que se actualiza la pagina
 
-// carrito.agregarPelicula(pelicula1, lista)
-// carrito.agregarPelicula(pelicula2, lista)
-// carrito.agregarPelicula(pelicula3, lista)
 
-// console.log(carrito)
+const contenedor = document.querySelector(".contenedor")
 
-// carrito.quitarPelicula(pelicula2, carrito)
 
-// console.log(carrito)
+for( let p of listaPeliculas){
+    let div_img = document.createElement("div")
+    div_img.className = "contenedor_img"
+    div_img.innerHTML = `
+    <img src = "${p.imagenUrl}">
+    <h3>${p.nombre}</h3>
+    <p>${p.descripcion}</p>
 
-// carrito.agregarPelicula(serie1, lista)
+    <button class="btn-comprar" data-text="Agregar al carrito">Agregar al carrito</button>
+    `
+    contenedor.appendChild(div_img)
+}
 
-// console.log(carrito)
+function actualizarContador(event) {
+    const contador = document.getElementById("contador")
+    contador.innerText = parseInt(contador.innerText) + 1
+
+    const boton = event.target
+    const textoOriginal = boton.getAttribute("data-text")
+    
+    if(boton.textContent === "Agregado"){
+        boton.textContent = textoOriginal
+        contador.innerText = contador.innerText - 2
+    }else{
+        boton.textContent = "Agregado"
+    }
+    
+}
+
+
+const botonesAgregar = document.querySelectorAll(".btn-comprar")
+botonesAgregar.forEach(function(boton){
+    boton.addEventListener("click", actualizarContador)
+     
+})
+
+
+
+
+
+
+
