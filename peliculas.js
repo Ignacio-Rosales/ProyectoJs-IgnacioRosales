@@ -58,119 +58,140 @@ class Carrito {
     }
 }   
 
-function mostrarListaPeliculas() {
-    let mensaje = "Lista de películas disponibles:\n";
-    console.log("Lista de películas disponibles:");
-    for (let i = 0; i < listaPeliculas.length; i++) {
-        mensaje += `${i + 1}. ${listaPeliculas[i].nombre}\n`;
-        console.log(`${i + 1}. ${listaPeliculas[i].nombre}`);
-    }
-    return mensaje 
-}
+// function mostrarListaPeliculas() {
+//     let mensaje = "Lista de películas disponibles:\n";
+//     console.log("Lista de películas disponibles:");
+//     for (let i = 0; i < listaPeliculas.length; i++) {
+//         mensaje += `${i + 1}. ${listaPeliculas[i].nombre}\n`;
+//         console.log(`${i + 1}. ${listaPeliculas[i].nombre}`);
+//     }
+//     return mensaje 
+// }
 
-alert(mostrarListaPeliculas());
+// alert(mostrarListaPeliculas());
 
-const carrito = [];//Este carrito tiene que ser un JSON para almacenar los datos en el localStorage
+// const carrito = [];//Este carrito tiene que ser un JSON para almacenar los datos en el localStorage
 
-function agregarPeliculaAlCarrito(nombrePelicula) {
-    const peliculaEncontrada = listaPeliculas.find(pelicula => pelicula.nombre === nombrePelicula);
-    if (peliculaEncontrada) {
-        if (!carrito.includes(peliculaEncontrada)) {
-            carrito.push(peliculaEncontrada);
-            console.log(`"${nombrePelicula}" ha sido agregada al carrito.`);
-        } else {
-            console.log("La película ya se encuentra en el carrito.");
-        }
-    } else {
-        console.log(`"${nombrePelicula}" no se encontró en la lista de películas.`);
-    }
-}
+// function agregarPeliculaAlCarrito(nombrePelicula) {
+//     const peliculaEncontrada = listaPeliculas.find(pelicula => pelicula.nombre === nombrePelicula);
+//     if (peliculaEncontrada) {
+//         if (!carrito.includes(peliculaEncontrada)) {
+//             carrito.push(peliculaEncontrada);
+//             console.log(`"${nombrePelicula}" ha sido agregada al carrito.`);
+//         } else {
+//             console.log("La película ya se encuentra en el carrito.");
+//         }
+//     } else {
+//         console.log(`"${nombrePelicula}" no se encontró en la lista de películas.`);
+//     }
+// }
 
-function removerPeliculaDelCarrito(nombrePelicula) {
-    const peliculaEnCarrito = carrito.find(pelicula => pelicula.nombre === nombrePelicula);
-    if (peliculaEnCarrito) {
-        const index = carrito.indexOf(peliculaEnCarrito);
-        carrito.splice(index, 1);
-        alert(`"${nombrePelicula}" ha sido eliminada del carrito.`);
+// function removerPeliculaDelCarrito(nombrePelicula) {
+//     const peliculaEnCarrito = carrito.find(pelicula => pelicula.nombre === nombrePelicula);
+//     if (peliculaEnCarrito) {
+//         const index = carrito.indexOf(peliculaEnCarrito);
+//         carrito.splice(index, 1);
+//         alert(`"${nombrePelicula}" ha sido eliminada del carrito.`);
 
-        let mensaje = "Lista de películas actualizadas:\n";
-        console.log("Lista de películas actualizadas:");
-        for (let i = 0; i < carrito.length; i++) {
-            mensaje += `${i + 1}. ${carrito[i].nombre}\n`;
-            console.log(`${i + 1}. ${carrito[i].nombre}`);
-        }
-        return mensaje 
-    } else {
-        alert(`"${nombrePelicula}" no se encontró en el carrito.`);
-    }
-}
+//         let mensaje = "Lista de películas actualizadas:\n";
+//         console.log("Lista de películas actualizadas:");
+//         for (let i = 0; i < carrito.length; i++) {
+//             mensaje += `${i + 1}. ${carrito[i].nombre}\n`;
+//             console.log(`${i + 1}. ${carrito[i].nombre}`);
+//         }
+//         return mensaje 
+//     } else {
+//         alert(`"${nombrePelicula}" no se encontró en el carrito.`);
+//     }
+// }
 
-while (true) {
-    const accion = prompt("¿Desea agregar una película (A) o eliminar una película (E) del carrito? Ingrese 'A' o 'E' (o cancele para salir)");
+// while (true) {
+//     const accion = prompt("¿Desea agregar una película (A) o eliminar una película (E) del carrito? Ingrese 'A' o 'E' (o cancele para salir)");
 
-    if (accion === null) {
-        break;
-    } else if (accion === 'A') {
-        const peliculaElegida = prompt("Ingrese el nombre de la película que desea agregar al carrito").toUpperCase();
-        agregarPeliculaAlCarrito(peliculaElegida);
-    } else if (accion === 'E') {
-        const peliculaAEliminar = prompt("Ingrese el nombre de la película que desea eliminar del carrito").toUpperCase();
-        removerPeliculaDelCarrito(peliculaAEliminar);
-    }
-}
+//     if (accion === null) {
+//         break;
+//     } else if (accion === 'A') {
+//         const peliculaElegida = prompt("Ingrese el nombre de la película que desea agregar al carrito").toUpperCase();
+//         agregarPeliculaAlCarrito(peliculaElegida);
+//     } else if (accion === 'E') {
+//         const peliculaAEliminar = prompt("Ingrese el nombre de la película que desea eliminar del carrito").toUpperCase();
+//         removerPeliculaDelCarrito(peliculaAEliminar);
+//     }
+// }
 
-if (carrito.length > 0) {
-    let mensajeCarrito = "Esta es la lista de películas que eligió para comprar:\n";
-    carrito.forEach(pelicula => mensajeCarrito += pelicula.nombre + "\n");
-    alert(mensajeCarrito);
-} else {
-    alert("No ha agregado ninguna película al carrito.");
-}
+// if (carrito.length > 0) {
+//     let mensajeCarrito = "Esta es la lista de películas que eligió para comprar:\n";
+//     carrito.forEach(pelicula => mensajeCarrito += pelicula.nombre + "\n");
+//     alert(mensajeCarrito);
+// } else {
+//     alert("No ha agregado ninguna película al carrito.");
+// }
 
-const carritoStr = JSON.stringify(carrito)
+// const carritoStr = JSON.stringify(carrito)
 
-localStorage.setItem("carrito", carritoStr)
+// localStorage.setItem("carrito", carritoStr)
 //Corregir problema de que se reinicia el carrito cada vez que se actualiza la pagina
 
 
 const contenedor = document.querySelector(".contenedor")
+const contador = document.getElementById("contador")
+
+// Recuperar el valor del contador almacenado en el localStorage si existe
+const contadorStorage = localStorage.getItem("contador")
+if (contadorStorage) {
+  contador.innerText = contadorStorage
+}
 
 
-for( let p of listaPeliculas){
-    let div_img = document.createElement("div")
-    div_img.className = "contenedor_img"
-    div_img.innerHTML = `
-    <img src = "${p.imagenUrl}">
+for (let p of listaPeliculas) {
+  let div_img = document.createElement("div")
+  div_img.className = "contenedor_img"
+  div_img.innerHTML = `
+    <img src="${p.imagenUrl}">
     <h3>${p.nombre}</h3>
     <p>${p.descripcion}</p>
-
     <button class="btn-comprar" data-text="Agregar al carrito">Agregar al carrito</button>
-    `
-    contenedor.appendChild(div_img)
+  `
+  contenedor.appendChild(div_img)
 }
 
 function actualizarContador(event) {
-    const contador = document.getElementById("contador")
-    contador.innerText = parseInt(contador.innerText) + 1
+  const contador = document.getElementById("contador")
+  const boton = event.target
+  const textoOriginal = boton.getAttribute("data-text")
 
-    const boton = event.target
-    const textoOriginal = boton.getAttribute("data-text")
-    
-    if(boton.textContent === "Agregado"){
-        boton.textContent = textoOriginal
-        contador.innerText = contador.innerText - 2
-    }else{
-        boton.textContent = "Agregado"
-    }
-    
+  if (boton.textContent === "Agregado") {
+    boton.textContent = textoOriginal
+    contador.innerText = parseInt(contador.innerText) - 1
+  } else {
+    boton.textContent = "Agregado"
+    contador.innerText = parseInt(contador.innerText) + 1
+  }
+
+  // Guardar el valor de los botones en el LocalStorage
+  const botonesAgregar = document.querySelectorAll(".btn-comprar")
+  const botonesText = Array.from(botonesAgregar).map((boton) => boton.textContent)
+  localStorage.setItem("botones", JSON.stringify(botonesText))
+
+  // Guardar el valor actual del contador en el LocalStorage
+  localStorage.setItem("contador", contador.innerText)
 }
 
-
 const botonesAgregar = document.querySelectorAll(".btn-comprar")
-botonesAgregar.forEach(function(boton){
-    boton.addEventListener("click", actualizarContador)
-     
+botonesAgregar.forEach(function (boton) {
+  boton.addEventListener("click", actualizarContador)
 })
+
+// Recuperar el valor de los botones almacenados en el localStorage si existe
+const botonesStorage = localStorage.getItem("botones")
+if (botonesStorage) {
+    const botonesText = JSON.parse(botonesStorage)
+    const botonesAgregar = document.querySelectorAll(".btn-comprar")
+
+    botonesAgregar.forEach((boton, index) => {
+        boton.innerText = botonesText[index]
+    })
+}
 
 
 
