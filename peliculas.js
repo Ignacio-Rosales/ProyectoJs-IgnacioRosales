@@ -1,4 +1,3 @@
-//Realizar clase usuario para loguearse en la pagina de peliculas
 class Pelicula {
     constructor(id, imagenUrl, nombre, descripcion, duracion){
         this.id  = id,
@@ -14,6 +13,7 @@ const pelicula2 = new Pelicula(2,"./img/depredador.jpg","Predator", "Un grupo de
 const pelicula3 = new Pelicula(3,"./img/lamonja.jpg","La monja","Una monja se suicida en una abadía rumana y el Vaticano envía a un sacerdote y una novicia a investigar lo sucedido. Lo que ambos encuentran allá es un secreto perverso que los enfrentará cara a cara con el mal en su esencia más pura.", 150)
 const pelicula4 = new Pelicula(4,"./img/dicaprio.jpg","Asesinos de la luna", "En la década de 1920, los miembros de la tribu de nativos americanos del condado de Osage, en Oklahoma, son asesinados cuando se encuentra petróleo en sus tierras. El FBI establece una investigación para encontrar a los culpables.", 140)
 const pelicula5 = new Pelicula(5,"./img/oppenheimer.jpg","Oppenheimer", "Durante la Segunda Guerra Mundial, el teniente general Leslie Groves designa al físico J. Robert Oppenheimer para un grupo de trabajo que está desarrollando el Proyecto Manhattan, cuyo objetivo consiste en fabricar la primera bomba atómica.", 185)
+
 
 
 let listaPeliculas = [ pelicula1, pelicula2, pelicula3, pelicula4, pelicula5 ]
@@ -57,6 +57,70 @@ class Carrito {
             } 
     }
 }   
+
+
+
+const contenedor = document.querySelector(".contenedor")
+const contador = document.getElementById("contador")
+
+// Recuperar el valor del contador almacenado en el localStorage si existe
+const contadorStorage = localStorage.getItem("contador")
+if (contadorStorage) {
+  contador.innerText = contadorStorage
+}
+
+for (let p of listaPeliculas) {
+  let div_img = document.createElement("div")
+  div_img.className = "contenedor_img"
+  div_img.innerHTML = `
+    <img src="${p.imagenUrl}">
+    <h3>${p.nombre}</h3>
+    <p>${p.descripcion}</p>
+    <button class="btn-comprar" data-text="Agregar al carrito">Agregar al carrito</button>
+  `
+  contenedor.appendChild(div_img)
+}
+
+function actualizarContador(event) {
+  const contador = document.getElementById("contador")
+  const boton = event.target
+  const textoOriginal = boton.getAttribute("data-text")
+
+  if (boton.textContent === "Agregado") {
+    boton.textContent = textoOriginal
+    contador.innerText = parseInt(contador.innerText) - 1
+  } else {
+    boton.textContent = "Agregado"
+    contador.innerText = parseInt(contador.innerText) + 1
+  }
+
+  // Guardar el valor de los botones en el LocalStorage
+  const botonesAgregar = document.querySelectorAll(".btn-comprar")
+  const botonesText = Array.from(botonesAgregar).map((boton) => boton.textContent)
+  localStorage.setItem("botones", JSON.stringify(botonesText))
+
+  // Guardar el valor actual del contador en el LocalStorage
+  localStorage.setItem("contador", contador.innerText)
+}
+
+const botonesAgregar = document.querySelectorAll(".btn-comprar")
+botonesAgregar.forEach(function (boton) {
+  boton.addEventListener("click", actualizarContador)
+})
+
+// Recuperar el valor de los botones almacenados en el localStorage si existe
+const botonesStorage = localStorage.getItem("botones")
+if (botonesStorage) {
+    const botonesText = JSON.parse(botonesStorage)
+    const botonesAgregar = document.querySelectorAll(".btn-comprar")
+
+    botonesAgregar.forEach((boton, index) => {
+        boton.innerText = botonesText[index]
+    })
+}
+
+
+
 
 // function mostrarListaPeliculas() {
 //     let mensaje = "Lista de películas disponibles:\n";
@@ -131,68 +195,6 @@ class Carrito {
 
 // localStorage.setItem("carrito", carritoStr)
 //Corregir problema de que se reinicia el carrito cada vez que se actualiza la pagina
-
-
-const contenedor = document.querySelector(".contenedor")
-const contador = document.getElementById("contador")
-
-// Recuperar el valor del contador almacenado en el localStorage si existe
-const contadorStorage = localStorage.getItem("contador")
-if (contadorStorage) {
-  contador.innerText = contadorStorage
-}
-
-
-for (let p of listaPeliculas) {
-  let div_img = document.createElement("div")
-  div_img.className = "contenedor_img"
-  div_img.innerHTML = `
-    <img src="${p.imagenUrl}">
-    <h3>${p.nombre}</h3>
-    <p>${p.descripcion}</p>
-    <button class="btn-comprar" data-text="Agregar al carrito">Agregar al carrito</button>
-  `
-  contenedor.appendChild(div_img)
-}
-
-function actualizarContador(event) {
-  const contador = document.getElementById("contador")
-  const boton = event.target
-  const textoOriginal = boton.getAttribute("data-text")
-
-  if (boton.textContent === "Agregado") {
-    boton.textContent = textoOriginal
-    contador.innerText = parseInt(contador.innerText) - 1
-  } else {
-    boton.textContent = "Agregado"
-    contador.innerText = parseInt(contador.innerText) + 1
-  }
-
-  // Guardar el valor de los botones en el LocalStorage
-  const botonesAgregar = document.querySelectorAll(".btn-comprar")
-  const botonesText = Array.from(botonesAgregar).map((boton) => boton.textContent)
-  localStorage.setItem("botones", JSON.stringify(botonesText))
-
-  // Guardar el valor actual del contador en el LocalStorage
-  localStorage.setItem("contador", contador.innerText)
-}
-
-const botonesAgregar = document.querySelectorAll(".btn-comprar")
-botonesAgregar.forEach(function (boton) {
-  boton.addEventListener("click", actualizarContador)
-})
-
-// Recuperar el valor de los botones almacenados en el localStorage si existe
-const botonesStorage = localStorage.getItem("botones")
-if (botonesStorage) {
-    const botonesText = JSON.parse(botonesStorage)
-    const botonesAgregar = document.querySelectorAll(".btn-comprar")
-
-    botonesAgregar.forEach((boton, index) => {
-        boton.innerText = botonesText[index]
-    })
-}
-
 
 
 
