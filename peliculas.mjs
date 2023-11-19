@@ -38,12 +38,8 @@ class Carrito {
     }
 }   
 
-
-
 const contenedor = document.querySelector(".contenedor")
 const contador = document.getElementById("contador")
-
-
 
 function agregarPeliculaAlDom(pelicula){
     
@@ -56,30 +52,7 @@ function agregarPeliculaAlDom(pelicula){
       <button class="btn-comprar" data-text="Agregar al carrito">Agregar al carrito</button>
       `
     contenedor.appendChild(div_img)
-      
 }
-
-// function actualizarContador(event) {
-//     // const contador = document.getElementById("contador")
-//     const boton = event.target
-//     const textoOriginal = boton.getAttribute("data-text")
-  
-//     if (boton.textContent === "Quitar del carrito") {
-//       boton.textContent = textoOriginal
-//       contador.innerText = parseInt(contador.innerText) - 1
-//     } else {
-//       boton.textContent = "Quitar del carrito"
-//       contador.innerText = parseInt(contador.innerText) + 1
-//     }
-  
-//     // Guardar el valor de los botones en el LocalStorage
-//     const botonesAgregar = document.querySelectorAll(".btn-comprar")
-//     const botonesText = Array.from(botonesAgregar).map((boton) => boton.textContent)
-//     localStorage.setItem("botones", JSON.stringify(botonesText))
-  
-//     // Guardar el valor actual del contador en el LocalStorage
-//     localStorage.setItem("contador", contador.innerText)
-//   }
 
 function actualizarContador(event) {
     const boton = event.target;
@@ -102,7 +75,6 @@ function actualizarContador(event) {
                 contador.innerText = parseInt(contador.innerText) + 1;
             }
 
-            // Resto del código para guardar en localStorage
             const botonesAgregar = document.querySelectorAll(".btn-comprar");
             const botonesText = Array.from(botonesAgregar).map((boton) => boton.textContent);
             localStorage.setItem("botones", JSON.stringify(botonesText));
@@ -126,7 +98,7 @@ fetch('peliculas.json')
           for (let pelicula of peliculasDesdeJSON){
             agregarPeliculaAlDom(pelicula)
           }
-
+          
             const botonesAgregar = document.querySelectorAll(".btn-comprar")
             botonesAgregar.forEach(function (boton) {
                 boton.addEventListener("click", actualizarContador)
@@ -150,15 +122,3 @@ fetch('peliculas.json')
             }
     })
     .catch(error => console.log('Error al cargar datos:', error))
-
-
-
-
-
-
-
-
-
-
-
-
