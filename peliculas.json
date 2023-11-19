@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "imagenUrl": "./img/batman.jpg",
+      "nombre": "The Batman",
+      "descripcion": "En Halloween, el alcalde de Gotham City Don Mitchell Jr. es asesinado por el asesino en serie Riddler...",
+      "duracion": 120
+    },
+    {
+      "id": 2,
+      "imagenUrl": "./img/depredador.jpg",
+      "nombre": "Predator",
+      "descripcion": "Un grupo de exsoldados y un biólogo se enfrentarán a los cazadores más letales de todo el universo...",
+      "duracion": 160
+    },
+    {
+      "id": 3,
+      "imagenUrl": "./img/lamonja.jpg",
+      "nombre": "La monja",
+      "descripcion": "Una monja se suicida en una abadía rumana y el Vaticano envía a un sacerdote y una novicia a investigar lo sucedido...",
+      "duracion": 150
+    },
+    {
+      "id": 4,
+      "imagenUrl": "./img/dicaprio.jpg",
+      "nombre": "Asesinos de la luna",
+      "descripcion": "En la década de 1920, los miembros de la tribu de nativos americanos del condado de Osage, en Oklahoma, son asesinados cuando se encuentra petróleo en sus tierras...",
+      "duracion": 140
+    },
+    {
+      "id": 5,
+      "imagenUrl": "./img/oppenheimer.jpg",
+      "nombre": "Oppenheimer",
+      "descripcion": "Durante la Segunda Guerra Mundial, el teniente general Leslie Groves designa al físico J. Robert Oppenheimer para un grupo de trabajo que está desarrollando el Proyecto Manhattan...",
+      "duracion": 185
+    }
+  ]
+  
